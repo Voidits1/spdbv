@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protein Viewer</title>
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+        #sidebar {
+            width: 200px;
+            background-color: #222;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            overflow-y: auto;
+        }
+        #sidebar h2 {
+            color: #00FF00;
+            margin-bottom: 20px;
+        }
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #sidebar li {
+            margin: 10px 0;
+            cursor: pointer;
+            font-size: 18px;
+            color: #ddd;
+        }
+        #sidebar li:hover {
+            color: #00FF00;
+        }
+        #container {
+            flex: 1;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow-y: auto;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #00FF00;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 18px;
+            font-family: "Times New Roman", serif;
+            border: none;
+            border-radius: 5px;
+        }
+        input {
+            width: 300px;
+        }
+        button {
+            background-color: #00FF00;
+            color: black;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #44FF44;
+        }
+        #protein-info {
+            margin-top: 20px;
+            font-size: 1.2em;
+            display: inline-block;
+            text-align: left;
+            padding: 15px;
+            background-color: #333;
+            border-radius: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+        #protein-info h2 {
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        #protein-info p {
+            padding: 10px;
+            background-color: #444;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        #viewer {
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            border: 1px solid white;
+            position: relative;
+            background-color: black;
+        }
+        #copyright {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h2>General Proteins</h2>
+        <ul>
+            <li onclick="fetchProtein('1CRN')">Protein 1CRN</li>
+            <li onclick="fetchProtein('1A3N')">Protein 1A3N</li>
+            <li onclick="fetchProtein('2HHB')">Protein 2HHB</li>
+            <li onclick="fetchProtein('1FJB')">Protein 1FJB</li>
+            <li onclick="fetchProtein('2MEC')">Protein 2MEC</li>
+            <li onclick="fetchProtein('1BNA')">Protein 1BNA</li>
+            <li onclick="fetchProtein('1G25')">Protein 1G25</li>
+            <li onclick="fetchProtein('1E7J')">Protein 1E7J</li>
+            <li onclick="fetchProtein('2LFM')">Protein 2LFM</li>
+            <li onclick="fetchProtein('3NAO')">Protein 3NAO</li>
+            <li onclick="fetchProtein('4AZA')">Protein 4AZA</li>
+            <li onclick="fetchProtein('5JDD')">Protein 5JDD</li>
+            <li onclick="fetchProtein('1D66')">Protein 1D66</li>
+            <li onclick="fetchProtein('3B7P')">Protein 3B7P</li>
+            <li onclick="fetchProtein('1PFL')">Protein 1PFL</li>
+            <li onclick="fetchProtein('2OEE')">Protein 2OEE</li>
+            <li onclick="fetchProtein('1XCR')">Protein 1XCR</li>
+            <li onclick="fetchProtein('1ISN')">Protein 1ISN</li>
+            <li onclick="fetchProtein('4JHC')">Protein 4JHC</li>
+            <li onclick="fetchProtein('3ZZR')">Protein 3ZZR</li>
+            <li onclick="fetchProtein('2F4O')">Protein 2F4O</li>
+            <li onclick="fetchProtein('2HZ6')">Protein 2HZ6</li>
+            <li onclick="fetchProtein('4ZGG')">Protein 4ZGG</li>
+            <li onclick="fetchProtein('5D7S')">Protein 5D7S</li>
+            <li onclick="fetchProtein('1LR9')">Protein 1LR9</li>
+            <li onclick="fetchProtein('3BZD')">Protein 3BZD</li>
+            <li onclick="fetchProtein('2MUG')">Protein 2MUG</li>
+            <li onclick="fetchProtein('1X7M')">Protein 1X7M</li>
+            <li onclick="fetchProtein('4Y6F')">Protein 4Y6F</li>
+            <li onclick="fetchProtein('2O7E')">Protein 2O7E</li>
+            <li onclick="fetchProtein('2BQ2')">Protein 2BQ2</li>
+            <li onclick="fetchProtein('1U8X')">Protein 1U8X</li>
+            <li onclick="fetchProtein('3J6P')">Protein 3J6P</li>
+            <li onclick="fetchProtein('2Q4E')">Protein 2Q4E</li>
+            <li onclick="fetchProtein('1K8M')">Protein 1K8M</li>
+            <li onclick="fetchProtein('3R6Q')">Protein 3R6Q</li>
+            <li onclick="fetchProtein('4B5G')">Protein 4B5G</li>
+            <li onclick="fetchProtein('1R8K')">Protein 1R8K</li>
+            <li onclick="fetchProtein('2P0B')">Protein 2P0B</li>
+            <li onclick="fetchProtein('5B00')">Protein 5B00</li>
+            <li onclick="fetchProtein('3DJ8')">Protein 3DJ8</li>
+            <li onclick="fetchProtein('4FJ5')">Protein 4FJ5</li>
+            <li onclick="fetchProtein('1G8H')">Protein 1G8H</li>
+            <li onclick="fetchProtein('3TGC')">Protein 3TGC</li>
+            <li onclick="fetchProtein('4DBN')">Protein 4DBN</li>
+            <li onclick="fetchProtein('2XUB')">Protein 2XUB</li>
+            <li onclick="fetchProtein('5LOH')">Protein 5LOH</li>
+            <li onclick="fetchProtein('2QHC')">Protein 2QHC</li>
+            <li onclick="fetchProtein('1HYA')">Protein 1HYA</li>
+            <li onclick="fetchProtein('2GJ6')">Protein 2GJ6</li>
+            <li onclick="fetchProtein('1S7X')">Protein 1S7X</li>
+            <li onclick="fetchProtein('3TKR')">Protein 3TKR</li>
+            <li onclick="fetchProtein('2W2Z')">Protein 2W2Z</li>
+            <li onclick="fetchProtein('4DBK')">Protein 4DBK</li>
+            <li onclick="fetchProtein('3ENY')">Protein 3ENY</li>
+            <li onclick="fetchProtein('2M9I')">Protein 2M9I</li>
+        </ul>
+    </div>
+
+    <div id="container">
+        <h1>Protein Viewer</h1>
+        <p>Enter a Protein ID (e.g., 1CRN) to fetch and visualize its structure.</p>
+        <div>
+            <input type="text" id="protein-id" placeholder="Enter Protein ID">
+            <button onclick="fetchProtein()">Search</button>
+        </div>
+        <div id="protein-info"></div>
+        <div id="viewer"></div>
+        <div id="copyright">
+            <p>Data sourced from <a href="https://www.rcsb.org" style="color: white;" target="_blank">RCSB PDB</a></p>
+        </div>
+    </div>
+
+    <script src="https://3dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+    <script>
+        async function fetchProtein(proteinId) {
+            const infoDiv = document.getElementById('protein-info');
+            const viewerDiv = document.getElementById('viewer');
+
+            // Clear previous content
+            infoDiv.innerHTML = '';
+            viewerDiv.innerHTML = '';
+
+            if (!proteinId) {
+                proteinId = document.getElementById('protein-id').value.trim();
+            }
+
+            if (!proteinId) {
+                infoDiv.innerHTML = '<p style="color: red;">Please enter a valid Protein ID or click on a protein name.</p>';
+                return;
+            }
+
+            try {
+                console.log(`Fetching metadata for Protein ID: ${proteinId}`);
+                
+                // Fetch metadata from RCSB PDB API
+                const metadataResponse = await fetch(`https://data.rcsb.org/rest/v1/core/entry/${proteinId}`);
+                if (!metadataResponse.ok) {
+                    throw new Error('Failed to fetch metadata. Status: ' + metadataResponse.status);
+                }
+                const metadata = await metadataResponse.json();
+                if (!metadata || Object.keys(metadata).length === 0) {
+                    throw new Error('No metadata found for the given Protein ID.');
+                }
+
+                console.log('Metadata fetched:', metadata);
+
+                // Extracting useful fields
+                const depositDate = metadata.rcsb_accession_info?.deposit_date || 'N/A';
+                const releaseDate = metadata.rcsb_accession_info?.initial_release_date || 'N/A';
+                const moleculeInfo = metadata.struct?.title || 'N/A';
+                const keywords = metadata.struct_keywords?.pdbx_keywords || 'N/A';
+                const chains = metadata.rcsb_entry_container_identifiers?.polymer_entity_ids?.join(', ') || 'N/A';
+
+                // Displaying fetched info
+                infoDiv.innerHTML = `
+                    <h2>${metadata.rcsb_id}</h2>
+                    <p><strong>Title:</strong> ${moleculeInfo}</p>
+                    <p><strong>Deposited:</strong> ${new Date(depositDate).toLocaleDateString()}</p>
+                    <p><strong>Released:</strong> ${new Date(releaseDate).toLocaleDateString()}</p>
+                    <p><strong>Chains:</strong> ${chains}</p>
+                    <p><strong>Keywords:</strong> ${keywords}</p>
+                `;
+
+                // Fetch PDB file for 3D visualization
+                const pdbResponse = await fetch(`https://files.rcsb.org/download/${proteinId}.pdb`);
+                if (!pdbResponse.ok) {
+                    throw new Error('Failed to fetch PDB file. Status: ' + pdbResponse.status);
+                }
+                const pdbData = await pdbResponse.text();
+                console.log('PDB data fetched:', pdbData);
+
+                // Render 3D structure using 3Dmol.js with vibrant color (cyan)
+                const viewer = $3Dmol.createViewer(viewerDiv, { backgroundColor: "black" });
+                viewer.addModel(pdbData, "pdb");
+                viewer.setStyle({}, { cartoon: { color: "cyan" } });
+                viewer.zoomTo();
+                viewer.render();
+                viewer.resize(); // Ensure the viewer fits properly in the container
+            } catch (error) {
+                console.error('Error occurred:', error);
+                infoDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
